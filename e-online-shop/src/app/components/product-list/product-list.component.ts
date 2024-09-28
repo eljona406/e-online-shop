@@ -6,11 +6,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { CartService } from '../../shared/services/cart.service';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
 	selector: 'app-product-list',
 	standalone: true,
-	imports: [CommonModule, MatCardModule, MatButtonModule],
+	imports: [CommonModule, MatCardModule, MatButtonModule, HeaderComponent],
 	templateUrl: './product-list.component.html',
 	styleUrls: ['./product-list.component.css'],
 })
@@ -30,7 +31,7 @@ export class ProductListComponent {
 	}
 
 	public addToCart(product: Product) {
-		this.cartService.addToCart(product, 1);
+		this.cartService.addToCart(product);
 		alert(`${product.name} added to the cart`);
 	}
 }

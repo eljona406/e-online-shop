@@ -1,0 +1,19 @@
+<header class="header-container">
+	<!-- Burger Menu -->
+	<button class="menu-icon" (click)="toggleMenu()">&#9776;</button>
+	<div class="page-title">{{ pageTitle }}</div>
+
+	<div class="header-right">
+		<input *ngIf="showSearch" type="text" placeholder="Search..." (input)="onSearch($event)" />
+		<div class="cart-icon">
+			<span class="cart-icon-image">&#128722;</span>
+			<span *ngIf="cartCount > 0" class="cart-count">{{ cartCount }}</span>
+		</div>
+	</div>
+</header>
+
+<div *ngIf="isMenuOpen" class="side-menu">
+	<a routerLink="/products">Products</a>
+	<a routerLink="/cart">Cart</a>
+	<!-- Add more menu links as needed -->
+</div>

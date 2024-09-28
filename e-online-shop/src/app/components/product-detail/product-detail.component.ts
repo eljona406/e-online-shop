@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../shared/services/products.service';
 import { CartService } from '../../shared/services/cart.service';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
 	selector: 'app-product-detail',
 	standalone: true,
-	imports: [],
+	imports: [HeaderComponent],
 	templateUrl: './product-detail.component.html',
 	styleUrl: './product-detail.component.css',
 })
@@ -18,7 +19,7 @@ export class ProductDetailComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private productService: ProductService,
-		private cartService: CartService,
+		private cartService: CartService
 	) {}
 
 	ngOnInit() {
