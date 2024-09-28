@@ -12,9 +12,9 @@
 			@media (min-width: 768px) {
 				width: 32%;
 			}
-			img {
-				width: 200px;
-				align-self: center;
+			mat-card-content img {
+				height: 200px;
+				left: 15%;
 			}
 		}
 	}

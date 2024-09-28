@@ -1,0 +1,29 @@
+.cart-items {
+	padding: 24px;
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+
+	button {
+		margin: 0 5px;
+		padding: 5px 10px;
+		cursor: pointer;
+	}
+
+	img {
+		margin-right: 10px;
+	}
+}
+.empty-cart {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}

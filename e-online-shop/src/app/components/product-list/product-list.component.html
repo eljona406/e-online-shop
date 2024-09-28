@@ -5,8 +5,8 @@
 	<div class="product-list">
 		<div *ngFor="let product of products" class="product-item">
 			<mat-card class="product-card">
-				<img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
-				<mat-card-content>
+				<mat-card-content (click)="viewProductDetails(product.id)">
+					<img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
 					<h3 mat-card-title>{{ product.name }}</h3>
 					<p>{{ product.description }}</p>
 					<p>
@@ -14,7 +14,9 @@
 					</p>
 				</mat-card-content>
 				<mat-card-actions>
-					<button mat-raised-button color="primary">Add to Cart</button>
+					<button mat-raised-button color="primary" (click)="addToCart(product)">
+						Add to Cart
+					</button>
 				</mat-card-actions>
 			</mat-card>
 		</div>
