@@ -1,10 +1,14 @@
 <app-header [pageTitle]="'Home'" [showSearch]="true"></app-header>
 <div class="products-container">
-	<div>
-		<h1>search out of {{ products.length }} products</h1>
+	<div class="search">
+		<app-search
+			[placeholder]="'Search products...'"
+			[(searchTerm)]="searchTerm"
+			(searchTermChange)="filterProducts($event)">
+		</app-search>
 	</div>
 	<div class="product-list">
-		<div *ngFor="let product of products" class="product-item">
+		<div *ngFor="let product of filteredProducts" class="product-item">
 			<mat-card class="product-card">
 				<mat-card-content (click)="viewProductDetails(product.id)">
 					<img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
