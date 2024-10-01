@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../shared/services/products.service';
 import { CartService } from '../../shared/services/cart.service';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
 	selector: 'app-product-detail',
 	standalone: true,
-	imports: [],
+	imports: [HeaderComponent],
 	templateUrl: './product-detail.component.html',
 	styleUrl: './product-detail.component.css',
 })
@@ -18,13 +19,11 @@ export class ProductDetailComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private productService: ProductService,
-		private cartService: CartService,
+		private cartService: CartService
 	) {}
 
 	ngOnInit() {
 		const id = this.route.snapshot.paramMap.get('id');
-
-		// If the id exists, convert it to a number. Otherwise, set productId to null.
 		this.productId = id !== null ? +id : null;
 
 		if (this.productId !== null) {

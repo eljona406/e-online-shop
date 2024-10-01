@@ -1,0 +1,18 @@
+<header class="header-container">
+	<div class="burger-menu">
+		<button class="menu-icon" (click)="menu.openMenu()">
+			<i class="fas fa-bars"></i>
+		</button>
+	</div>
+
+	<div class="page-title">{{ pageTitle }}</div>
+
+	<div class="header-right">
+		<div class="cart-icon">
+			<a routerLink="/cart" routerLinkActive="active"> <i class="fa fa-shopping-cart"></i></a>
+			<span *ngIf="cartCount > 0" class="cart-count">{{ cartCount }}</span>
+		</div>
+	</div>
+</header>
+
+<app-menu #menu></app-menu>
