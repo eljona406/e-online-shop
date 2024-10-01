@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../shared/services/products.service';
 import { CartService } from '../../shared/services/cart.service';
-import { HeaderComponent } from '../../shared/header/header.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
 	selector: 'app-product-detail',
@@ -24,8 +24,6 @@ export class ProductDetailComponent implements OnInit {
 
 	ngOnInit() {
 		const id = this.route.snapshot.paramMap.get('id');
-
-		// If the id exists, convert it to a number. Otherwise, set productId to null.
 		this.productId = id !== null ? +id : null;
 
 		if (this.productId !== null) {
