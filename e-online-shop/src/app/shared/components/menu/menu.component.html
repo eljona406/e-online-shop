@@ -1,0 +1,11 @@
+<div class="menu-overlay" *ngIf="isMenuOpen">
+	<div class="menu-content">
+		<button class="close-btn" (click)="closeMenu()">✕</button>
+
+		<ul class="menu-items">
+			<li><a routerLink="" routerLinkActive="active">Products</a></li>
+			<li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+			<li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+		</ul>
+	</div>
+</div>
