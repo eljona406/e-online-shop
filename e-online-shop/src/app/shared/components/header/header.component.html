@@ -10,7 +10,7 @@
 	<div class="header-right">
 		<div class="cart-icon">
 			<a routerLink="/cart" routerLinkActive="active"> <i class="fa fa-shopping-cart"></i></a>
-			<span *ngIf="cartCount > 0" class="cart-count">{{ cartCount }}</span>
+			<span class="cart-count">{{ (cartCount$ | async) || 0 }}</span>
 		</div>
 	</div>
 </header>
