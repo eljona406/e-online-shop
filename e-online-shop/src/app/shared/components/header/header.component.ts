@@ -18,14 +18,31 @@ export class HeaderComponent implements OnInit {
 
 	cartCount$: Observable<number> = of(0); // Use observable for cart count
 	isMenuOpen = false;
+	userEmail: string | null = null;
 
 	constructor(private store: Store) {}
 
 	ngOnInit() {
-		// Select cart count from the store and handle potential null values
 		this.cartCount$ = this.store.select(selectCartCount).pipe(
 			map((count) => count || 0) // Emit 0 if count is null or undefined
 		);
+
+		if (typeof window !== 'undefined') {
+			const token = localStorage.getItem('auth_token');
+			const email = localStorage.getItem('user_email');
+
+			if (token && email) {
+				this.userEmail = email;
+			}
+		}
+	}
+
+	onLogout() {
+		if (typeof window !== 'undefined') {
+			localStorage.removeItem('auth_token');
+			localStorage.removeItem('user_email');
+		}
+		this.userEmail = null;
 	}
 
 	toggleMenu() {
