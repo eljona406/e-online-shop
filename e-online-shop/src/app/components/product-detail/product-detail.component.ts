@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
-import { ProductService } from '../../shared/services/products.service';
-import { CartService } from '../../shared/services/cart.service';
+import { Store } from '@ngrx/store';
+import { addToCart } from '../../store/cart/cart.actions';
+import { Observable } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { selectProducts } from '../../store/products/products.selectors';
 
 @Component({
 	selector: 'app-product-detail',
@@ -15,12 +18,14 @@ import { HeaderComponent } from '../../shared/components/header/header.component
 export class ProductDetailComponent implements OnInit {
 	public productId: number | null | undefined;
 	public product: Product | undefined;
+	public products$: Observable<Product[]>;
 
 	constructor(
 		private route: ActivatedRoute,
-		private productService: ProductService,
-		private cartService: CartService
-	) {}
+		private store: Store
+	) {
+		this.products$ = this.store.select(selectProducts);
+	}
 
 	ngOnInit() {
 		const id = this.route.snapshot.paramMap.get('id');
@@ -34,16 +39,23 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	public loadProductDetails(id: number) {
-		this.product = this.productService.getProducts().find((p) => p.id === id);
-
-		if (!this.product) {
-			console.error('Product not found');
-		}
+		// Subscribe to products and find the product by ID
+		this.products$
+			.pipe(
+				filter((products) => products.length > 0), // Only proceed if products exist
+				first() // Complete the subscription after the first emission
+			)
+			.subscribe((products) => {
+				this.product = products.find((p) => p.id === id);
+				if (!this.product) {
+					console.error('Product not found', id);
+				}
+			});
 	}
 
 	public addToCart() {
 		if (this.product) {
-			this.cartService.addToCart(this.product, 1);
+			this.store.dispatch(addToCart({ product: this.product, quantity: 1 }));
 			alert(`${this.product.name} added to the cart`);
 		}
 	}
