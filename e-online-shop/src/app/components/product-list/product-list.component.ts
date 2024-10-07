@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 import { Product } from '../../shared/models/product.model';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { SearchComponent } from '../../shared/components/search/search.component';
-import { selectProducts } from '../../store/products/products.selectors';
-import { loadProducts } from '../../store/products/products.actions';
-import { addToCart } from '../../store/cart/cart.actions';
+import { selectProducts } from '../../core/store/products/products.selectors';
+import { loadProducts } from '../../core/store/products/products.actions';
+import { addToCart } from '../../core/store/cart/cart.actions';
 
 @Component({
 	selector: 'app-product-list',

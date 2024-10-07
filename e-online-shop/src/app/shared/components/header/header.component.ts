@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, of } from 'rxjs';
-import { selectCartCount } from '../../../store/cart/cart.selectors';
+import { selectCartCount } from '../../../core/store/cart/cart.selectors';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../menu/menu.component';
 import { RouterModule } from '@angular/router';

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
 import { Store } from '@ngrx/store';
-import { addToCart } from '../../store/cart/cart.actions';
+import { addToCart } from '../../core/store/cart/cart.actions';
 import { Observable } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { selectProducts } from '../../store/products/products.selectors';
+import { selectProducts } from '../../core/store/products/products.selectors';
 
 @Component({
 	selector: 'app-product-detail',

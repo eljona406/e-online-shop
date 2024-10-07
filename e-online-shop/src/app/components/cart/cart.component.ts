@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { Product } from '../../shared/models/product.model';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { selectCartItems } from '../../store/cart/cart.selectors';
+import { selectCartItems } from '../../core/store/cart/cart.selectors';
 import {
 	incrementQuantity,
 	decrementQuantity,
 	removeFromCart,
-} from '../../store/cart/cart.actions';
-import { CartState } from '../../store/cart/cart.state';
+} from '../../core/store/cart/cart.actions';
+import { CartState } from '../../core/store/cart/cart.state';
 
 @Component({
 	selector: 'app-cart',

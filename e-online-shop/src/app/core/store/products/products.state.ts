@@ -1,4 +1,4 @@
-import { Product } from '../../shared/models/product.model';
+import { Product } from '../../../shared/models/product.model';
 
 // Define the shape of the products state
 export interface ProductsState {
