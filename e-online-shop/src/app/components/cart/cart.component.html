@@ -1,7 +1,7 @@
 <app-header [pageTitle]="'Cart'" [showSearch]="false"></app-header>
-<div *ngIf="cartItems.length > 0; else emptyCart" class="cart-items">
+<div *ngIf="cartItems$ | async as cartItems; else emptyCart" class="cart-items">
 	<h2>Your Cart</h2>
-	<ul>
+	<ul *ngIf="cartItems.length > 0">
 		<li *ngFor="let item of cartItems">
 			<img [src]="item.product.imageUrl" alt="{{ item.product.name }}" width="100" />
 			<p>{{ item.product.name }} - Quantity: {{ item.quantity }}</p>

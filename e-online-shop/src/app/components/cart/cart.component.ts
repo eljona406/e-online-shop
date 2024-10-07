@@ -1,37 +1,42 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Product } from '../../shared/models/product.model';
-import { CartService } from '../../shared/services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { selectCartItems } from '../../core/store/cart/cart.selectors';
+import {
+	incrementQuantity,
+	decrementQuantity,
+	removeFromCart,
+} from '../../core/store/cart/cart.actions';
+import { CartState } from '../../core/store/cart/cart.state';
 
 @Component({
 	selector: 'app-cart',
 	standalone: true,
 	imports: [CommonModule, HeaderComponent],
 	templateUrl: './cart.component.html',
-	styleUrl: './cart.component.css',
+	styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-	cartItems: { product: Product; quantity: number }[] = [];
+	cartItems$: Observable<{ product: Product; quantity: number }[]> | undefined;
 
-	constructor(private cartService: CartService) {}
+	constructor(private store: Store<{ cart: CartState }>) {}
 
 	ngOnInit(): void {
-		this.cartItems = this.cartService.getCartItems();
+		this.cartItems$ = this.store.select(selectCartItems);
 	}
 
 	public increaseQuantity(productId: number) {
-		this.cartService.incrementQuantity(productId);
-		this.cartItems = this.cartService.getCartItems();
+		this.store.dispatch(incrementQuantity({ productId })); // Dispatch the increment action
 	}
 
 	public decreaseQuantity(productId: number) {
-		this.cartService.decrementQuantity(productId);
-		this.cartItems = this.cartService.getCartItems();
+		this.store.dispatch(decrementQuantity({ productId })); // Dispatch the decrement action
 	}
 
 	public removeFromCart(productId: number) {
-		this.cartService.removeFromCart(productId);
-		this.cartItems = this.cartService.getCartItems(); // Refresh the cart items
+		this.store.dispatch(removeFromCart({ productId })); // Dispatch the remove action
 	}
 }

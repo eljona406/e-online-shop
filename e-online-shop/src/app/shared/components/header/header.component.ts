@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map, Observable, of } from 'rxjs';
+import { selectCartCount } from '../../../core/store/cart/cart.selectors';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../services/cart.service';
 import { MenuComponent } from '../menu/menu.component';
 import { RouterModule } from '@angular/router';
-
 @Component({
 	selector: 'app-header',
 	standalone: true,
@@ -15,15 +16,16 @@ export class HeaderComponent implements OnInit {
 	@Input() pageTitle = '';
 	@Input() showSearch = false;
 
-	cartCount = 0;
+	cartCount$: Observable<number> = of(0); // Use observable for cart count
 	isMenuOpen = false;
 
-	constructor(private cartService: CartService) {}
+	constructor(private store: Store) {}
 
 	ngOnInit() {
-		this.cartService.cartCount$.subscribe((count: number) => {
-			this.cartCount = count;
-		});
+		// Select cart count from the store and handle potential null values
+		this.cartCount$ = this.store.select(selectCartCount).pipe(
+			map((count) => count || 0) // Emit 0 if count is null or undefined
+		);
 	}
 
 	toggleMenu() {
