@@ -8,8 +8,8 @@
 	<div class="page-title">{{ pageTitle }}</div>
 
 	<div class="header-right">
-		<div *ngIf="userEmail; else loginLink">
-			Welcome, {{ userEmail }}!
+		<div *ngIf="username; else loginLink">
+			Welcome, {{ username }}!
 			<button (click)="onLogout()">Logout</button>
 		</div>
 

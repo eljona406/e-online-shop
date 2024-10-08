@@ -1,3 +1,5 @@
-<div class="main-content">
-	<router-outlet></router-outlet>
+<div [class.no-header]="isLoginOrRegistration()">
+	<div class="main-content">
+		<router-outlet></router-outlet>
+	</div>
 </div>

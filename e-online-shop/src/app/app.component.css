@@ -1,3 +1,8 @@
+.no-header .main-content {
+	margin-top: 0;
+	height: 100vh;
+}
+
 .page-title {
 	font-size: 16px;
 	font-weight: bold;
@@ -10,11 +15,10 @@
 
 .main-content {
 	margin-top: 50px;
-	padding: 10px;
 	height: calc(100vh - 70px);
 	overflow-y: auto;
 	@media (min-width: 768px) {
-		margin-top: 60px;
+		margin-top: 70px;
 		padding: 0px;
 		background-color: #80808014;
 	}

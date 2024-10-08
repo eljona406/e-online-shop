@@ -1,21 +1,46 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-	<div>
-		<label for="email">Email:</label>
-		<input id="email" formControlName="email" type="email" required />
-		<div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-			<small>Email is required and must be valid.</small>
-		</div>
+<div class="login">
+	<div class="form">
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<mat-form-field appearance="fill">
+				<mat-label>Email</mat-label>
+				<input matInput id="login-email" formControlName="email" type="email" required />
+				<mat-error
+					*ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+					Email is required and must be valid.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="fill">
+				<mat-label>Password</mat-label>
+				<input
+					matInput
+					id="login-password"
+					formControlName="password"
+					type="password"
+					required />
+				<mat-error
+					*ngIf="
+						loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+					">
+					Password is required.
+				</mat-error>
+			</mat-form-field>
+
+			<button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+				Login
+			</button>
+
+			<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+			<div>
+				<p>
+					If you are not registered yet,<a
+						routerLink="/register"
+						routerLinkActive="active">
+						redirect to registration
+					</a>
+				</p>
+			</div>
+		</form>
 	</div>
-
-	<div>
-		<label for="password">Password:</label>
-		<input id="password" formControlName="password" type="password" required />
-		<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-			<small>Password is required.</small>
-		</div>
-	</div>
-
-	<button type="submit" [disabled]="loginForm.invalid">Login</button>
-
-	<div *ngIf="errorMessage">{{ errorMessage }}</div>
-</form>
+</div>

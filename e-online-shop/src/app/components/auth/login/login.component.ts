@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
-import {
-	FormBuilder,
-	FormGroup,
-	FormsModule,
-	ReactiveFormsModule,
-	Validators,
-} from '@angular/forms';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService, LoginResponse } from '../../../shared/services/auth.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
 
 @Component({
 	selector: 'app-login',
 	standalone: true,
-	imports: [RouterOutlet, FormsModule, CommonModule, ReactiveFormsModule],
+	imports: [
+		RouterOutlet,
+		RouterModule,
+		CommonModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatButton,
+	],
 	templateUrl: './login.component.html',
-	styleUrl: './login.component.css',
+	styleUrls: ['./login.component.css'], // Note: Changed styleUrl to styleUrls
 })
 export class LoginComponent {
 	loginForm: FormGroup;
@@ -34,22 +39,23 @@ export class LoginComponent {
 		});
 	}
 
-	onSubmit(): void {
+	onSubmit() {
 		if (this.loginForm.valid) {
-			const { email, password } = this.loginForm.value;
+			const email = this.loginForm.get('email')?.value;
+			const password = this.loginForm.get('password')?.value;
 
 			this.authService.login(email, password).subscribe({
 				next: (response: LoginResponse) => {
-					console.log('Login successful:', response);
-					this.router.navigate(['/']);
+					localStorage.setItem('auth_token', response.token);
+					localStorage.setItem('user_email', email);
+					localStorage.setItem('user_firstName', response.firstName);
+					localStorage.setItem('user_surname', response.surname);
+					this.router.navigate(['/products']);
 				},
 				error: (error) => {
-					console.error('Login failed:', error);
 					this.errorMessage = error.message;
 				},
 			});
-		} else {
-			console.log('Form is invalid', this.loginForm.errors); // Log form errors if any
 		}
 	}
 }
