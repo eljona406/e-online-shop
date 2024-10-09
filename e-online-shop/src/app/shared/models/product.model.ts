@@ -3,5 +3,10 @@ export interface Product {
 	name: string;
 	description: string;
 	price: number;
-	imageUrl: string;
+	rating: number;
+	isInStock: boolean;
+	quantity: number;
+	images: string[];
+	category: string;
+	author: string;
 }

@@ -15,7 +15,7 @@
 
 .main-content {
 	margin-top: 50px;
-	height: calc(100vh - 70px);
+	height: calc(100vh);
 	overflow-y: auto;
 	background: linear-gradient(195deg, rgba(178, 217, 160, 0.17), rgba(91, 116, 81, 1));
 	@media (min-width: 768px) {

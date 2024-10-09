@@ -1,5 +1,6 @@
 .products-container {
-	background: linear-gradient(195deg, rgba(178, 217, 160, 0.17), rgba(91, 116, 81, 1));
+	/* background: linear-gradient(195deg, rgba(178, 217, 160, 0.17), rgba(91, 116, 81, 1)); */
+	background-color: transparent;
 	.search {
 		width: auto;
 	}
@@ -14,13 +15,32 @@
 			width: auto;
 
 			@media (min-width: 768px) {
-				max-width: 250px;
+				width: 250px;
 			}
 			mat-card-content {
+				display: flex;
+				padding: 16px;
+				flex-direction: column;
+				flex-wrap: nowrap;
+				justify-content: center;
+				align-items: center;
+
 				img {
 					margin: 0;
-					max-height: 218px;
+					height: 218px;
 				}
+
+				.content {
+					width: 150px;
+				}
+			}
+			button {
+				background-color: transparent;
+				color: black;
+				box-shadow: none;
+				border: 1px solid black;
+				border-radius: 20px;
+				padding: 5px 15px;
 			}
 		}
 	}

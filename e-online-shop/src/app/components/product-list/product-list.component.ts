@@ -62,7 +62,10 @@ export class ProductListComponent implements OnInit {
 					(product) =>
 						product.name.toLowerCase().includes(lowerCaseTerm) ||
 						product.description.toLowerCase().includes(lowerCaseTerm) ||
-						product.price.toString().includes(lowerCaseTerm)
+						product.price.toString().includes(lowerCaseTerm) ||
+						product.category.toString().includes(lowerCaseTerm) ||
+						product.author.toString().includes(lowerCaseTerm) ||
+						product.rating.toString().includes(lowerCaseTerm)
 				);
 			});
 		} else {
