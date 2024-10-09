@@ -1,0 +1,28 @@
+.register {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	.form {
+		width: 50%;
+
+		.two-column {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+			gap: 15px;
+
+			mat-form-field {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+			mat-form-field:last-child {
+				margin-right: 0;
+			}
+		}
+		.full-width {
+			width: 100%;
+		}
+	}
+}

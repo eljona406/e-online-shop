@@ -3,7 +3,7 @@
 	<h2>Your Cart</h2>
 	<ul *ngIf="cartItems.length > 0">
 		<li *ngFor="let item of cartItems">
-			<img [src]="item.product.imageUrl" alt="{{ item.product.name }}" width="100" />
+			<img [src]="item.product.images[0]" alt="{{ item.product.name }}" width="100" />
 			<p>{{ item.product.name }} - Quantity: {{ item.quantity }}</p>
 			<p>Price: ${{ item.product.price }} each</p>
 			<button (click)="decreaseQuantity(item.product.id)">-</button>

@@ -4,7 +4,8 @@
 	left: 0;
 	right: 0;
 	height: 70px;
-	background-color: #ffffff;
+	background: linear-gradient(135deg, rgb(161 174 155), rgba(91, 116, 81, 1));
+	color: #fff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -17,6 +18,9 @@
 	cursor: pointer;
 	background: none;
 	border: none;
+	i {
+		color: #fff;
+	}
 }
 
 .page-title {
@@ -35,6 +39,7 @@
 	position: relative;
 	i {
 		font-size: 24px;
+		color: #fff;
 	}
 }
 

@@ -8,6 +8,15 @@
 	<div class="page-title">{{ pageTitle }}</div>
 
 	<div class="header-right">
+		<div *ngIf="username; else loginLink">
+			Welcome, {{ username }}!
+			<button (click)="onLogout()">Logout</button>
+		</div>
+
+		<ng-template #loginLink>
+			<a routerLink="/login">Login</a>
+		</ng-template>
+
 		<div class="cart-icon">
 			<a routerLink="/cart" routerLinkActive="active"> <i class="fa fa-shopping-cart"></i></a>
 			<span class="cart-count">{{ (cartCount$ | async) || 0 }}</span>

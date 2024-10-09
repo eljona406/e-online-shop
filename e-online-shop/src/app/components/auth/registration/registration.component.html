@@ -1,0 +1,121 @@
+<div class="register">
+	<form class="form" [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+		<h2>Register</h2>
+		<div class="two-column">
+			<mat-form-field>
+				<mat-label>First Name</mat-label>
+				<input matInput formControlName="firstName" required />
+				<mat-error
+					*ngIf="
+						registrationForm.get('firstName')?.invalid &&
+						registrationForm.get('firstName')?.touched
+					">
+					First Name is required.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Surname</mat-label>
+				<input matInput formControlName="surname" required />
+				<mat-error
+					*ngIf="
+						registrationForm.get('surname')?.invalid &&
+						registrationForm.get('surname')?.touched
+					">
+					Surname is required.
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<mat-form-field class="full-width">
+			<mat-label>Email</mat-label>
+			<input matInput formControlName="email" type="email" required />
+			<mat-error
+				*ngIf="
+					registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched
+				">
+				Email is required and must be valid.
+			</mat-error>
+		</mat-form-field>
+
+		<div class="two-column">
+			<mat-form-field>
+				<mat-label>Password</mat-label>
+				<input matInput formControlName="password" type="password" required />
+				<mat-error
+					*ngIf="
+						registrationForm.get('password')?.invalid &&
+						registrationForm.get('password')?.touched
+					">
+					Password is required.
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Confirm Password</mat-label>
+				<input matInput formControlName="confirmPassword" type="password" required />
+				<mat-error
+					*ngIf="
+						registrationForm.get('confirmPassword')?.invalid &&
+						registrationForm.get('confirmPassword')?.touched
+					">
+					Confirm Password is required.
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<h4>Address</h4>
+		<div formGroupName="address" class="address-section">
+			<div class="two-column">
+				<mat-form-field>
+					<mat-label>House Number</mat-label>
+					<input matInput formControlName="houseNumber" required />
+					<mat-error
+						*ngIf="
+							registrationForm.get('address.houseNumber')?.invalid &&
+							registrationForm.get('address.houseNumber')?.touched
+						">
+						House Number is required.
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Street</mat-label>
+					<input matInput formControlName="street" required />
+					<mat-error
+						*ngIf="
+							registrationForm.get('address.street')?.invalid &&
+							registrationForm.get('address.street')?.touched
+						">
+						Street is required.
+					</mat-error>
+				</mat-form-field>
+			</div>
+
+			<div class="two-column">
+				<mat-form-field>
+					<mat-label>Postal Code</mat-label>
+					<input matInput formControlName="postalCode" required />
+					<mat-error
+						*ngIf="
+							registrationForm.get('address.postalCode')?.invalid &&
+							registrationForm.get('address.postalCode')?.touched
+						">
+						Postal Code is required.
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Street 2 (optional)</mat-label>
+					<input matInput formControlName="street2" />
+				</mat-form-field>
+			</div>
+		</div>
+
+		<button mat-raised-button type="submit" [disabled]="registrationForm.invalid">
+			Register
+		</button>
+
+		<div *ngIf="registrationErrorMessage">{{ registrationErrorMessage }}</div>
+	</form>
+</div>

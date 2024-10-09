@@ -11,18 +11,23 @@
 		<div *ngFor="let product of filteredProducts" class="product-item">
 			<mat-card class="product-card">
 				<mat-card-content (click)="viewProductDetails(product.id)">
-					<img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
-					<h3 mat-card-title>{{ product.name }}</h3>
-					<p>{{ product.description }}</p>
-					<p>
-						<strong>${{ product.price }}</strong>
-					</p>
+					<div class="image">
+						<img mat-card-image [src]="product.images[0]" alt="{{ product.name }}" />
+					</div>
+					<div class="content">
+						<h3 mat-card-title>{{ product.name }}</h3>
+						<p>{{ product.author }}</p>
+
+						<p>
+							<span><i class="fa fa-star"></i></span>
+							<strong>{{ product.rating }}</strong>
+						</p>
+						<p>
+							<strong>£{{ product.price }}</strong>
+							<button (click)="addToCart(product)">Add to Cart</button>
+						</p>
+					</div>
 				</mat-card-content>
-				<mat-card-actions>
-					<button mat-raised-button color="primary" (click)="addToCart(product)">
-						Add to Cart
-					</button>
-				</mat-card-actions>
 			</mat-card>
 		</div>
 	</div>
