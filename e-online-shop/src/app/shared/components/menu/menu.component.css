@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.7);
+	/* background: rgba(0, 0, 0, 0.7); */
 	z-index: 1000;
 	display: flex;
 }
@@ -12,7 +12,7 @@
 .menu-content {
 	width: 300px;
 	height: 100%;
-	background-color: #fff;
+	background: linear-gradient(314deg, rgb(106 132 94 / 50%), rgb(63 81 55));
 	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
 	padding: 20px;
 	position: relative;
@@ -26,6 +26,7 @@
 	border: none;
 	font-size: 24px;
 	cursor: pointer;
+	color: #ffffff;
 }
 
 .menu-items {
@@ -36,12 +37,19 @@
 
 .menu-items li {
 	margin-bottom: 20px;
+	button {
+		background-color: transparent;
+		font-size: 20px;
+		color: #ffffff;
+		border: none;
+		padding: 0px;
+	}
 }
 
 .menu-items li a {
 	text-decoration: none;
-	font-size: 18px;
-	color: #333;
+	font-size: 20px;
+	color: #ffffff;
 }
 
 .menu-items li a:hover {

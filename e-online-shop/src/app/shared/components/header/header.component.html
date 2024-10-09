@@ -8,13 +8,10 @@
 	<div class="page-title">{{ pageTitle }}</div>
 
 	<div class="header-right">
-		<div *ngIf="username; else loginLink">
-			Welcome, {{ username }}!
-			<button (click)="onLogout()">Logout</button>
-		</div>
+		<div *ngIf="username; else loginLink">Welcome, {{ username }}!</div>
 
 		<ng-template #loginLink>
-			<a routerLink="/login">Login</a>
+			<p>Welcome, Guest!</p>
 		</ng-template>
 
 		<div class="cart-icon">
