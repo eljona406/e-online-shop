@@ -1,9 +1,20 @@
 <app-header [pageTitle]="'Products'" [showSearch]="false"></app-header>
-<div>
-	<h1>{{ product?.name }}</h1>
-	<img [src]="product?.images" alt="{{ product?.name }}" width="300" />
-	<p>{{ product?.description }}</p>
-	<p>Price: ${{ product?.price }}</p>
 
-	<button (click)="addToCart()">Add to Cart</button>
+<div class="product-details">
+	<div class="row">
+		<div class="image-container">
+			<img [src]="getImageSrc()" alt="{{ product?.name }}" />
+		</div>
+		<div class="details-container">
+			<h1 class="product-title">{{ product?.name }}</h1>
+			<p class="product-author">{{ product?.author }}</p>
+			<p class="product-category">{{ product?.category }}</p>
+			<p>£{{ product?.price }}</p>
+			<button (click)="addToCart()">Add to Cart</button>
+		</div>
+	</div>
+
+	<div class="description-row">
+		<p class="product-description">{{ product?.description }}</p>
+	</div>
 </div>

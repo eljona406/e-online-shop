@@ -16,6 +16,7 @@
 
 			@media (min-width: 768px) {
 				width: 250px;
+				height: 500px;
 			}
 			mat-card-content {
 				display: flex;
@@ -27,20 +28,29 @@
 
 				img {
 					margin: 0;
-					height: 218px;
+					height: 250px;
 				}
 
 				.content {
-					width: 150px;
+					width: 180px;
 				}
 			}
-			button {
-				background-color: transparent;
-				color: black;
-				box-shadow: none;
-				border: 1px solid black;
-				border-radius: 20px;
-				padding: 5px 15px;
+			.cart {
+				justify-content: space-between;
+				display: flex;
+				align-items: center;
+				button {
+					background: linear-gradient(
+						180deg,
+						rgb(178 217 160 / 32%),
+						rgb(91 116 81 / 68%)
+					);
+					color: #174b17;
+					box-shadow: none;
+					border: 1px solid #1e7e1ea3;
+					border-radius: 20px;
+					padding: 5px 15px;
+				}
 			}
 		}
 	}
