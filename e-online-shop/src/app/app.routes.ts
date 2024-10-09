@@ -7,7 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistrationComponent } from './components/auth/registration/registration.component';
 
 export const routes: Routes = [
-	{ path: '', component: DashboardComponent },
+	{ path: 'dashboard', component: DashboardComponent },
 	{ path: 'products', component: ProductListComponent },
 	{ path: 'product/:id', component: ProductDetailComponent },
 	{ path: 'cart', component: CartComponent },

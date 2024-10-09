@@ -6,6 +6,8 @@ import { AuthService, LoginResponse } from '../../../shared/services/auth.servic
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
+import { setHeaderVisibility } from '../../../core/store/ui/ui.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'app-login',
@@ -31,8 +33,10 @@ export class LoginComponent {
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private store: Store
 	) {
+		this.store.dispatch(setHeaderVisibility({ isVisible: false }));
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required]],

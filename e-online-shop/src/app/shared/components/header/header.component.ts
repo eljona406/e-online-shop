@@ -4,7 +4,8 @@ import { map, Observable, of } from 'rxjs';
 import { selectCartCount } from '../../../core/store/cart/cart.selectors';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../menu/menu.component';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { selectIsMenuVisible } from '../../../core/store/ui/ui.selectors';
 @Component({
 	selector: 'app-header',
 	standalone: true,
@@ -14,16 +15,17 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 	@Input() pageTitle = '';
-	@Input() showSearch = false;
 
-	cartCount$: Observable<number> = of(0);
-	isMenuOpen = false;
-	username: string | null = null;
+	public cartCount$: Observable<number> = of(0);
+	public isMenuOpen = false;
+	public username: string | null = null;
+	public isMenuVisible$: Observable<boolean>;
+	public isHeaderVisible$: Observable<boolean>;
 
-	constructor(
-		private store: Store,
-		private router: Router
-	) {}
+	constructor(private store: Store) {
+		this.isHeaderVisible$ = this.store.select(selectIsMenuVisible);
+		this.isMenuVisible$ = this.store.select(selectIsMenuVisible);
+	}
 
 	ngOnInit() {
 		this.cartCount$ = this.store.select(selectCartCount).pipe(
@@ -38,17 +40,6 @@ export class HeaderComponent implements OnInit {
 			}
 		}
 	}
-
-	// onLogout() {
-	// 	if (typeof window !== 'undefined') {
-	// 		localStorage.removeItem('auth_token');
-	// 		localStorage.removeItem('user_email');
-	// 		localStorage.removeItem('user_firstName');
-	// 		localStorage.removeItem('user_surname');
-	// 	}
-	// 	this.username = null;
-	// 	this.router.navigate(['/login']);
-	// }
 
 	toggleMenu() {
 		this.isMenuOpen = !this.isMenuOpen;
