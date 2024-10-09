@@ -39,16 +39,16 @@ export class HeaderComponent implements OnInit {
 		}
 	}
 
-	onLogout() {
-		if (typeof window !== 'undefined') {
-			localStorage.removeItem('auth_token');
-			localStorage.removeItem('user_email');
-			localStorage.removeItem('user_firstName');
-			localStorage.removeItem('user_surname');
-		}
-		this.username = null;
-		this.router.navigate(['/login']);
-	}
+	// onLogout() {
+	// 	if (typeof window !== 'undefined') {
+	// 		localStorage.removeItem('auth_token');
+	// 		localStorage.removeItem('user_email');
+	// 		localStorage.removeItem('user_firstName');
+	// 		localStorage.removeItem('user_surname');
+	// 	}
+	// 	this.username = null;
+	// 	this.router.navigate(['/login']);
+	// }
 
 	toggleMenu() {
 		this.isMenuOpen = !this.isMenuOpen;
