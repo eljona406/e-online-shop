@@ -3,7 +3,7 @@ import { RegistrationComponent } from '../auth/registration/registration.compone
 import { LoginComponent } from '../auth/login/login.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { Store } from '@ngrx/store';
-import { setMenuVisibility } from '../../core/store/ui/ui.actions';
+import { setHeaderVisibility, setMenuVisibility } from '../../core/store/ui/ui.actions';
 
 @Component({
 	selector: 'app-dashboard',
@@ -14,6 +14,7 @@ import { setMenuVisibility } from '../../core/store/ui/ui.actions';
 })
 export class DashboardComponent {
 	constructor(private store: Store) {
-		this.store.dispatch(setMenuVisibility({ isVisible: false }));
+		this.store.dispatch(setMenuVisibility({ isMenuVisible: false }));
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: true }));
 	}
 }

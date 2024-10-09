@@ -1,5 +1,5 @@
 <header class="header-container" *ngIf="isHeaderVisible$ | async">
-	<div class="burger-menu" *ngIf="isMenuVisible$ | async">
+	<div class="burger-menu" *ngIf="showMenu">
 		<button class="menu-icon" (click)="menu.openMenu()">
 			<i class="fas fa-bars"></i>
 		</button>

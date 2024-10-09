@@ -5,7 +5,7 @@ import { selectCartCount } from '../../../core/store/cart/cart.selectors';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../menu/menu.component';
 import { RouterModule } from '@angular/router';
-import { selectIsMenuVisible } from '../../../core/store/ui/ui.selectors';
+import { selectIsHeaderVisible, selectIsMenuVisible } from '../../../core/store/ui/ui.selectors';
 @Component({
 	selector: 'app-header',
 	standalone: true,
@@ -15,6 +15,7 @@ import { selectIsMenuVisible } from '../../../core/store/ui/ui.selectors';
 })
 export class HeaderComponent implements OnInit {
 	@Input() pageTitle = '';
+	@Input() showMenu : boolean | undefined ;
 
 	public cartCount$: Observable<number> = of(0);
 	public isMenuOpen = false;
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
 	public isHeaderVisible$: Observable<boolean>;
 
 	constructor(private store: Store) {
-		this.isHeaderVisible$ = this.store.select(selectIsMenuVisible);
+		this.isHeaderVisible$ = this.store.select(selectIsHeaderVisible);
 		this.isMenuVisible$ = this.store.select(selectIsMenuVisible);
 	}
 

@@ -4,18 +4,18 @@ import { UIState } from './ui.state';
 
 const initialState: UIState = {
 	isMenuVisible: true,
-	isHeaderVisible: false,
+	isHeaderVisible: true,
 	isLoading: false,
 };
 
 export const uiReducer = createReducer(
 	initialState,
-	on(setMenuVisibility, (state, { isVisible }) => ({
+	on(setMenuVisibility, (state, { isMenuVisible }) => ({
 		...state,
-		isMenuVisible: isVisible,
+		isMenuVisible: isMenuVisible,
 	})),
-	on(setHeaderVisibility, (state, { isVisible }) => ({
+	on(setHeaderVisibility, (state, { isHeaderVisible }) => ({
 		...state,
-		isHeaderVisible: isVisible,
+		isHeaderVisible: isHeaderVisible,
 	}))
 );

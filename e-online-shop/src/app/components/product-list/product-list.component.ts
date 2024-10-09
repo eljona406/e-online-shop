@@ -11,6 +11,7 @@ import { SearchComponent } from '../../shared/components/search/search.component
 import { selectProducts } from '../../core/store/products/products.selectors';
 import { loadProducts } from '../../core/store/products/products.actions';
 import { addToCart } from '../../core/store/cart/cart.actions';
+import { setHeaderVisibility } from '../../core/store/ui/ui.actions';
 
 @Component({
 	selector: 'app-product-list',
@@ -30,6 +31,7 @@ export class ProductListComponent implements OnInit {
 	) {
 		// Select products from the store
 		this.products$ = this.store.select(selectProducts);
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: true }));
 	}
 
 	ngOnInit() {

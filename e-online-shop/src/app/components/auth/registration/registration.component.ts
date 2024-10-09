@@ -33,7 +33,7 @@ export class RegistrationComponent {
 		private router: Router,
 		private store: Store
 	) {
-		this.store.dispatch(setHeaderVisibility({ isVisible: false }));
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: false }));
 		this.registrationForm = this.fb.group({
 			firstName: ['', Validators.required],
 			surname: ['', Validators.required],

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { selectIsMenuVisible } from './core/store/ui/ui.selectors';
+import { selectIsHeaderVisible } from './core/store/ui/ui.selectors';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -21,7 +21,7 @@ export class AppComponent {
 		private router: Router,
 		private store: Store
 	) {
-		this.isHeaderVisible$ = this.store.select(selectIsMenuVisible);
+		this.isHeaderVisible$ = this.store.select(selectIsHeaderVisible);
 	}
 
 	navigateTo(path: string): void {
