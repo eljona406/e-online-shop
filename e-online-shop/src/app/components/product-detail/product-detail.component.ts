@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { selectProducts } from '../../core/store/products/products.selectors';
+import { loadProducts } from '../../core/store/products/products.actions';
 
 @Component({
 	selector: 'app-product-detail',
@@ -19,11 +20,13 @@ export class ProductDetailComponent implements OnInit {
 	public productId: number | null | undefined;
 	public product: Product | undefined;
 	public products$: Observable<Product[]>;
+	public defaultImage = 'path/to/default/image.jpg';
 
 	constructor(
 		private route: ActivatedRoute,
 		private store: Store
 	) {
+		this.store.dispatch(loadProducts());
 		this.products$ = this.store.select(selectProducts);
 	}
 
@@ -58,5 +61,11 @@ export class ProductDetailComponent implements OnInit {
 			this.store.dispatch(addToCart({ product: this.product, quantity: 1 }));
 			alert(`${this.product.name} added to the cart`);
 		}
+	}
+
+	public getImageSrc(): string {
+		return this.product?.images && this.product.images.length > 0
+			? this.product.images[0]
+			: this.defaultImage;
 	}
 }
