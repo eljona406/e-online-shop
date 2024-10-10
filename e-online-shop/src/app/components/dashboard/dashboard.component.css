@@ -1,0 +1,39 @@
+.dashboard {
+	font-family: 'Times New Roman', serif;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	position: relative;
+}
+
+.hero-image {
+	margin-bottom: 20px;
+}
+
+.hero-image img {
+	width: 100%;
+	height: auto;
+}
+
+.book-section {
+	margin-top: 40px;
+}
+
+.book-section h2 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.book-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 20px;
+}
+
+.see-more {
+	display: block;
+	text-align: right;
+	margin-top: 20px;
+	color: #666;
+	text-decoration: none;
+}

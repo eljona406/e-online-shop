@@ -10,8 +10,13 @@
 	<div class="product-list">
 		<div *ngFor="let product of filteredProducts" class="product-item">
 			<mat-card class="product-card">
-				<mat-card-content (click)="viewProductDetails(product.id)">
-					<div class="image">
+				<mat-card-content>
+					<div
+						class="image"
+						(click)="viewProductDetails(product.id)"
+						role="button"
+						(keydown)="onKeydown($event, product.id)"
+						tabindex="0">
 						<img mat-card-image [src]="product.images[0]" alt="{{ product.name }}" />
 					</div>
 					<div class="content">

@@ -1,5 +1,19 @@
-<app-header [showMenu]="false" [pageTitle]="'Home'"></app-header>
+<app-header [showMenu]="false" [pageTitle]="'Charmed Chapters'"></app-header>
 <div class="auth-container">
-	<app-login></app-login>
-	<app-registration></app-registration>
+	<app-menu></app-menu>
+
+	<div class="hero-image">
+		<img
+			src="https://dauntbooks.co.uk/wp-content/themes/winston/images/marylebone_edited.jpg"
+			alt="Daunt Books" />
+	</div>
+
+	<section class="book-section">
+		<!-- filter all fiction category  -->
+		<h2>Fiction</h2>
+		<div class="book-grid">
+			<!-- Add book items here  -->
+		</div>
+		<a href="/products" class="see-more">See more books...</a>
+	</section>
 </div>

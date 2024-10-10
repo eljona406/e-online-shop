@@ -1,24 +1,27 @@
-<header class="header-container" *ngIf="isHeaderVisible$ | async">
-	<div class="burger-menu" *ngIf="showMenu">
+<header class="header-container">
+	<div class="header-section left-section">
+		<!-- <div class="burger-menu" *ngIf="showMenu">
 		<button class="menu-icon" (click)="menu.openMenu()">
-			<i class="fas fa-bars"></i>
+		  <i class="fas fa-bars"></i>
 		</button>
+	  </div> -->
 	</div>
-
-	<div class="page-title">{{ pageTitle }}</div>
-
-	<div class="header-right">
+	<div class="header-section center-section">
+		<div class="page-title">
+			<a routerLink="/dashboard" routerLinkActive="active" tabindex="0">Charmed Chapters</a>
+		</div>
+	</div>
+	<div class="header-section right-section">
 		<div *ngIf="username; else loginLink">Welcome, {{ username }}!</div>
-
 		<ng-template #loginLink>
 			<p>Welcome, Guest!</p>
 		</ng-template>
-
 		<div class="cart-icon">
-			<a routerLink="/cart" routerLinkActive="active"> <i class="fa fa-shopping-cart"></i></a>
+			<a routerLink="/cart" routerLinkActive="active">
+				<i class="fa fa-shopping-cart"></i>
+			</a>
 			<span class="cart-count">{{ (cartCount$ | async) || 0 }}</span>
 		</div>
 	</div>
 </header>
-
 <app-menu #menu></app-menu>

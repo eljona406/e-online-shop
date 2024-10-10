@@ -76,4 +76,9 @@ export class ProductListComponent implements OnInit {
 			});
 		}
 	}
+	public onKeydown(event: KeyboardEvent, productId: number): void {
+		if (event.key === 'Enter' || event.key === ' ') {
+			this.viewProductDetails(productId);
+		}
+	}
 }
