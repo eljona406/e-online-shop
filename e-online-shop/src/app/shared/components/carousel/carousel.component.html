@@ -1,0 +1,9 @@
+<div
+	class="carousel"
+	[class.noCarousel]="displayedProducts.length < 6"
+	(touchstart)="onTouchStart($event)"
+	(touchend)="onTouchEnd($event)">
+	<div class="carousel-image" *ngFor="let product of displayedProducts">
+		<img [src]="product.images[0]" alt="{{ product?.name }}" />
+	</div>
+</div>

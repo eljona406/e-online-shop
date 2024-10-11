@@ -5,48 +5,32 @@ import { HeaderComponent } from '../../shared/components/header/header.component
 import { Store } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../shared/components/menu/menu.component';
-
-interface NavItem {
-	label: string;
-	link: string;
-	children?: NavItem[];
-  }
+import { Product } from '../../shared/models/product.model';
+import { selectProducts } from '../../core/store/products/products.selectors';
+import { Observable } from 'rxjs';
+import { loadProducts } from '../../core/store/products/products.actions';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 
 @Component({
 	selector: 'app-dashboard',
 	standalone: true,
-	imports: [LoginComponent, RegistrationComponent, HeaderComponent, CommonModule, MenuComponent],
+	imports: [
+		LoginComponent,
+		RegistrationComponent,
+		HeaderComponent,
+		CommonModule,
+		MenuComponent,
+		CarouselComponent,
+	],
 	templateUrl: './dashboard.component.html',
 	styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
-	activeDropdown: number | null = null;
+	public filteredProducts: Product[] = [];
+	public products: Observable<Product[]>;
 
-	navItems: NavItem[] = [
-		{ label: 'Shop', link: '/products' },
-		{ label: 'Bags', link: '/products' },
-		{
-			label: 'Subscriptions',
-			link: '',
-			children: [
-				{ label: 'Buy a subscription', link: '/register' },
-				{ label: 'My Subscription', link: '/login' },
-			],
-		},
-		{ label: 'Events', link: '/products' },
-		{ label: 'More', link: '/products' },
-		{ label: 'Contact', link: '/products' },
-	];
 	constructor(private store: Store) {
-		//this.store.dispatch(setHeaderVisibility({ isHeaderVisible: true }));
-		//	this.store.dispatch(setMenuVisibility({ isMenuVisible: false }));
+		this.store.dispatch(loadProducts());
+		this.products = this.store.select(selectProducts);
 	}
-
-	public toggleDropdown(event: Event, index: number) {
-
-		if (this.navItems[index].children) {
-		  event.preventDefault();
-		  this.activeDropdown = this.activeDropdown === index ? null : index;
-		}
-	  }
 }

@@ -9,11 +9,12 @@
 	</div>
 
 	<section class="book-section">
-		<!-- filter all fiction category  -->
-		<h2>Fiction</h2>
-		<div class="book-grid">
-			<!-- Add book items here  -->
-		</div>
+		<h2>Fantasy</h2>
+		<app-carousel [products]="products" category="Fantasy"></app-carousel>
+
+		<h2>Classics</h2>
+		<app-carousel [products]="products" category="Classics"></app-carousel>
+
 		<a href="/products" class="see-more">See more books...</a>
 	</section>
 </div>
