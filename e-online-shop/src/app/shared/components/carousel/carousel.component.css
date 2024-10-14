@@ -1,22 +1,29 @@
-.carousel {
-	display: flex;
-	overflow: hidden;
+
+  img {
 	width: 100%;
-	justify-content: center;
-	align-items: center;
-	transition: transform 0.5s ease;
-	&.noCarousel {
-		justify-content: flex-start;
-	}
+	height: 250px;
+	object-fit: cover;
+  }
+
+  .owl-nav {
+    display: none !important; /* Hides the navigation buttons */
+}
+.dots-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.carousel-image {
-	width: 180px;
-	height: 270px;
-	object-fit: cover;
-	transition: transform 0.5s;
-	margin: 15px;
-	img {
-		height: 250px;
-	}
+.dots-navigation button {
+    background-color: grey;
+    border: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dots-navigation button.active {
+    background-color: white; /* Change color for active dot */
 }
