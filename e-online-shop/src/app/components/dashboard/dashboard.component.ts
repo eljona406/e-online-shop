@@ -10,6 +10,7 @@ import { selectProducts } from '../../core/store/products/products.selectors';
 import { Observable } from 'rxjs';
 import { loadProducts } from '../../core/store/products/products.actions';
 import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-dashboard',
@@ -29,8 +30,15 @@ export class DashboardComponent {
 	public filteredProducts: Product[] = [];
 	public products: Observable<Product[]>;
 
-	constructor(private store: Store) {
+	constructor(
+		private store: Store,
+		private router: Router
+	) {
 		this.store.dispatch(loadProducts());
 		this.products = this.store.select(selectProducts);
+	}
+
+	public handleItemClick(productId: number) {
+		this.router.navigate(['/product', productId]);
 	}
 }

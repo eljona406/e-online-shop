@@ -10,10 +10,16 @@
 
 	<section class="book-section">
 		<h2>Fantasy</h2>
-		<app-carousel [products]="products" category="Fantasy"></app-carousel>
+		<app-carousel
+			[products]="products"
+			category="Fantasy"
+			(itemClick)="handleItemClick($event)"></app-carousel>
 
 		<h2>Classics</h2>
-		<app-carousel [products]="products" category="Romance"></app-carousel>
+		<app-carousel
+			[products]="products"
+			category="Romance"
+			(itemClick)="handleItemClick($event)"></app-carousel>
 
 		<a href="/products" class="see-more">See more books...</a>
 	</section>

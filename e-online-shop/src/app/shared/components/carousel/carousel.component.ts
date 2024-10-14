@@ -1,4 +1,13 @@
-import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import {
+	Component,
+	Input,
+	OnInit,
+	OnDestroy,
+	Inject,
+	PLATFORM_ID,
+	EventEmitter,
+	Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from '../../models/product.model';
@@ -14,6 +23,8 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 export class CarouselComponent implements OnInit, OnDestroy {
 	@Input() products: Observable<Product[]> | undefined;
 	@Input() category = '';
+	@Output() itemClick = new EventEmitter<number>();
+
 	public filteredProducts: Product[] = [];
 	public currentImageIndex = 0;
 	public imagesToShow = 6;
@@ -25,7 +36,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
 		loop: false,
 		margin: 10,
 		dots: true,
-		nav: false,
+		nav: true,
 		responsive: {
 			0: { items: 1 },
 			600: { items: 3 },
@@ -111,5 +122,15 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
 	public goToGroup(index: number) {
 		this.currentImageIndex = index;
+	}
+
+	public onItemClick(productId: number) {
+		this.itemClick.emit(productId);
+	}
+
+	public onKeydown(event: KeyboardEvent, productId: number): void {
+		if (event.key === 'Enter' || event.key === ' ') {
+			this.onItemClick(productId);
+		}
 	}
 }
