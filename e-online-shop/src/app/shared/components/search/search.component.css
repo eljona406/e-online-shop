@@ -21,7 +21,7 @@
 	@media (min-width: 768px) {
 		justify-content: end;
 		input {
-			width: 32%;
+			width: 100%;
 		}
 	}
 }

@@ -22,7 +22,14 @@ export class MenuComponent implements OnInit {
 	activeDropdown: number | null = null;
 
 	navItems: NavItem[] = [
-		{ label: 'Shop', link: '/products' },
+		{
+			label: 'Shop',
+			children: [
+				{ label: 'All Products', link: '/products/all-products' },
+				{ label: 'Fantasy', link: '/products/fantasy' },
+				{ label: 'Romance', link: '/products/romance' },
+			],
+		},
 		{ label: 'Cart', link: '/cart' },
 		{
 			label: 'Subscriptions',

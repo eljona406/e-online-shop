@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/models/product.model';
@@ -24,10 +24,13 @@ export class ProductListComponent implements OnInit {
 	public products$: Observable<Product[]>;
 	public searchTerm = '';
 	public filteredProducts: Product[] = [];
+	private allProducts: Product[] = [];
+	public selectedCategory: string | undefined;
 
 	constructor(
 		private router: Router,
-		private store: Store
+		private store: Store,
+		private route: ActivatedRoute
 	) {
 		// Select products from the store
 		this.products$ = this.store.select(selectProducts);
@@ -40,6 +43,16 @@ export class ProductListComponent implements OnInit {
 		// Subscribe to products$ to initialize filteredProducts
 		this.products$.subscribe((products) => {
 			this.filteredProducts = products;
+			this.allProducts = products;
+		});
+
+		this.route.paramMap.subscribe((params) => {
+			const category = params.get('category');
+			if (category) {
+				this.setCategory(category);
+			} else {
+				this.setCategory('all-products'); // Default category if none is provided
+			}
 		});
 	}
 
@@ -76,6 +89,22 @@ export class ProductListComponent implements OnInit {
 			});
 		}
 	}
+	
+	public setCategory(category: string): void {
+		this.selectedCategory = category;
+		this.filterByCategory(this.selectedCategory);
+	}
+
+	public filterByCategory(category: string | null): void {
+		if (category === 'all-products' || !category) {
+			this.filteredProducts = this.allProducts; // Show all products
+		} else {
+			this.filteredProducts = this.allProducts.filter(
+				(product) => product.category.toLowerCase() === category.toLowerCase()
+			); // Filter by selected category
+		}
+	}
+
 	public onKeydown(event: KeyboardEvent, productId: number): void {
 		if (event.key === 'Enter' || event.key === ' ') {
 			this.viewProductDetails(productId);
