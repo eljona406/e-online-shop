@@ -2,9 +2,47 @@
 
 html,
 body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
 	height: 100%;
+	overflow-x: hidden; /* Prevent horizontal scrolling */
+	overflow-y: hidden;
+	touch-action: manipulation; /* Improve touch responsiveness */
 }
 body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+.owl-carousel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.owl-carousel .owl-stage-outer {
+	overflow: hidden;
+}
+
+.owl-carousel .owl-stage {
+	display: flex;
+	flex-wrap: nowrap;
+	transition: transform 0.5s ease;
+}
+
+.owl-carousel .owl-item {
+	flex: 0 0 auto; /* Prevents flex items from stretching */
+	width: calc(100% / 6 - 23px) !important; /*calc(100% / 6 - 20px)!important; 172px !important;*/
+	margin: 0 10px;
+	transition: transform 0.5s ease;
+}
+
+.owl-carousel .item {
+	display: inline-block;
+	height: 250px;
+	margin: 0 10px;
+}
+
+.owl-nav {
+	display: none !important; /* Hides the navigation buttons */
 }

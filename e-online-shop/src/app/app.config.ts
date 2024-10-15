@@ -10,13 +10,14 @@ import { ProductEffects } from './core/store/products/products.effects';
 import { CartEffects } from './core/store/cart/cart.effects';
 import { cartReducer } from './core/store/cart/cart.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { uiReducer } from './core/store/ui/ui.reducer';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes, withComponentInputBinding()),
 		provideClientHydration(),
-		provideStore({ product: productReducer, cart: cartReducer }),
+		provideStore({ product: productReducer, cart: cartReducer, ui: uiReducer }),
 		provideEffects(CartEffects),
 		provideEffects(ProductEffects),
 		provideStoreDevtools({ maxAge: 25 }),

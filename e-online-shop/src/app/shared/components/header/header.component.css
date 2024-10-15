@@ -9,8 +9,28 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 20px;
+	padding: 0;
 	z-index: 1000;
+}
+
+.header-section {
+	flex: 1;
+	display: flex;
+	align-items: center;
+}
+
+.left-section {
+	justify-content: flex-start;
+	padding-left: 20px;
+}
+
+.center-section {
+	justify-content: center;
+}
+
+.right-section {
+	justify-content: flex-end;
+	padding-right: 20px;
 }
 
 .menu-icon {
@@ -18,39 +38,35 @@
 	cursor: pointer;
 	background: none;
 	border: none;
-	i {
-		color: #fff;
-	}
+}
+
+.menu-icon i {
+	color: #fff;
 }
 
 .page-title {
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-	flex-grow: 1;
-}
-
-.header-right {
-	display: flex;
-	align-items: center;
+	a {
+		font-size: 20px;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: none;
+		color: inherit;
+	}
 }
 
 .cart-icon {
 	position: relative;
-	i {
-		font-size: 24px;
-		color: #fff;
-	}
+	margin-left: 15px;
+}
+
+.cart-icon i {
+	font-size: 24px;
+	color: #fff;
 }
 
 .cart-link {
 	text-decoration: none;
 	color: inherit;
-}
-
-.cart-icon-image {
-	font-size: 24px;
-	cursor: pointer;
 }
 
 .cart-count {

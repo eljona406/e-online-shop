@@ -1,0 +1,26 @@
+<owl-carousel-o
+	[options]="customOptions"
+	(touchstart)="onTouchStart($event)"
+	(touchend)="onTouchEnd($event)">
+	<ng-container *ngFor="let product of displayedProducts">
+		<ng-template carouselSlide>
+			<div
+				class="item"
+				(click)="onItemClick(product.id)"
+				(keydown)="onKeydown($event, product.id)"
+				tabindex="0">
+				<!-- Move the click event here -->
+				<img [src]="product.images[0]" alt="{{ product?.name }}" />
+			</div>
+		</ng-template>
+	</ng-container>
+</owl-carousel-o>
+
+<div class="dots-navigation">
+	<ng-container *ngFor="let group of [].constructor(totalGroups); let i = index">
+		<button
+			type="button"
+			[class.active]="currentImageIndex === i"
+			(click)="goToGroup(i)"> <span class="dot-content"></span></button>
+	</ng-container>
+</div>

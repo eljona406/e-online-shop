@@ -1,0 +1,29 @@
+
+  img {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+  }
+
+  .owl-nav {
+    display: none !important; /* Hides the navigation buttons */
+}
+.dots-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dots-navigation button {
+    background-color: grey;
+    border: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dots-navigation button.active {
+    background-color: white; /* Change color for active dot */
+}

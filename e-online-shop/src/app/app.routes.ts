@@ -9,6 +9,7 @@ import { RegistrationComponent } from './components/auth/registration/registrati
 export const routes: Routes = [
 	{ path: '', component: DashboardComponent },
 	{ path: 'products', component: ProductListComponent },
+	{ path: 'products/:category', component: ProductListComponent },
 	{ path: 'product/:id', component: ProductDetailComponent },
 	{ path: 'cart', component: CartComponent },
 	{ path: 'login', component: LoginComponent },

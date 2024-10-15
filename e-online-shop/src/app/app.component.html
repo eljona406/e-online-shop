@@ -1,4 +1,4 @@
-<div [class.no-header]="isLoginOrRegistration()">
+<div [class.no-header]="(isHeaderVisible$ | async) === false">
 	<div class="main-content">
 		<router-outlet></router-outlet>
 	</div>

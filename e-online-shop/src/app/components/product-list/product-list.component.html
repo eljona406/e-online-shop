@@ -1,23 +1,32 @@
-<app-header [pageTitle]="'Home'" [showSearch]="true"></app-header>
+<app-header [showMenu]="true" [pageTitle]="'Home'"></app-header>
 <div class="products-container">
-	<div class="search">
-		<app-search
-			[placeholder]="'Search products...'"
-			[(searchTerm)]="searchTerm"
-			(searchTermChange)="filterProducts($event)">
-		</app-search>
+	<div class="row">
+		<div class="search">
+			<app-search
+				[placeholder]="'Search products...'"
+				[(searchTerm)]="searchTerm"
+				(searchTermChange)="filterProducts($event)">
+			</app-search>
+		</div>
+		<div class="category-display">
+			<h1>{{ selectedCategory }}</h1>
+		</div>
 	</div>
 	<div class="product-list">
 		<div *ngFor="let product of filteredProducts" class="product-item">
 			<mat-card class="product-card">
-				<mat-card-content (click)="viewProductDetails(product.id)">
-					<div class="image">
+				<mat-card-content>
+					<div
+						class="image"
+						(click)="viewProductDetails(product.id)"
+						role="button"
+						(keydown)="onKeydown($event, product.id)"
+						tabindex="0">
 						<img mat-card-image [src]="product.images[0]" alt="{{ product.name }}" />
 					</div>
 					<div class="content">
 						<h3 mat-card-title>{{ product.name }}</h3>
 						<p>{{ product.author }}</p>
-
 						<p>
 							<span><i class="fa fa-star"></i></span>
 							<strong>{{ product.rating }}</strong>

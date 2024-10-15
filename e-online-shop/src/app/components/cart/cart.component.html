@@ -1,4 +1,4 @@
-<app-header [pageTitle]="'Cart'" [showSearch]="false"></app-header>
+<app-header [showMenu]="true" [pageTitle]="'Cart'"></app-header>
 <div *ngIf="cartItems$ | async as cartItems; else emptyCart" class="cart-items">
 	<h2>Your Cart</h2>
 	<ul *ngIf="cartItems.length > 0">

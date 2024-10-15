@@ -8,6 +8,7 @@ import { filter, first } from 'rxjs/operators';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { selectProducts } from '../../core/store/products/products.selectors';
 import { loadProducts } from '../../core/store/products/products.actions';
+import { setHeaderVisibility } from '../../core/store/ui/ui.actions';
 
 @Component({
 	selector: 'app-product-detail',
@@ -28,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
 	) {
 		this.store.dispatch(loadProducts());
 		this.products$ = this.store.select(selectProducts);
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: true }));
 	}
 
 	ngOnInit() {

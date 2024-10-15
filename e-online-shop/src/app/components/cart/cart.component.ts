@@ -11,6 +11,7 @@ import {
 	removeFromCart,
 } from '../../core/store/cart/cart.actions';
 import { CartState } from '../../core/store/cart/cart.state';
+import { setHeaderVisibility } from '../../core/store/ui/ui.actions';
 
 @Component({
 	selector: 'app-cart',
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.cartItems$ = this.store.select(selectCartItems);
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: true }));
 	}
 
 	public increaseQuantity(productId: number) {

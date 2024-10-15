@@ -20,7 +20,7 @@ export class ProductService {
 				'https://readaloudrevival.com/wp-content/uploads/2016/05/Pride-and-Prejudice.png.webp',
 			],
 			category: 'Classics',
-			author: 'Jane Austen', // Added author
+			author: 'Jane Austen',
 		},
 		{
 			id: 2,
@@ -32,7 +32,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 13,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRuPkJl7n-iwD5vatIBNDsvkwYDxzUV8T4dzp4Gu_F7ZVaOmHHNgkaWpQoUmn8WgVX9VYzE0YmehR5-KWeyAMZF7tVp9bTNE7UXJhMBUho&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Fantasy',
 			author: 'Madeline Miller',
@@ -182,7 +182,9 @@ export class ProductService {
 			rating: 4.6,
 			isInStock: true,
 			quantity: 14,
-			images: ['https://i.ebayimg.com/thumbs/images/g/Z94AAOSwAcRkn7W0/s-l500.jpg'],
+			images: [
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
+			],
 			category: 'Romance',
 			author: 'Casey McQuiston',
 		},
@@ -196,7 +198,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 11,
 			images: [
-				'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTFLA3xJclWfqblPyEzyuI-XEEnF_vvd9Zew5lm5ry3ZLKjzEwv_6rGq_n0eRyFnCfhX3GvsyKc-bSoww91xNxlX7WW69IBLFsZTHvE99aF&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Mystery',
 			author: 'Delia Owens',
@@ -211,7 +213,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 16,
 			images: [
-				'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT6yTkTPlgCg9ehS2wnmS45OSCrYMuLLV1W_NOBx2DjAe6gGeSh-wM2sfOmGvlWcP8id5gmPtRRiXVebxAc3fPib0cFTgSDVmThKHxVb7o&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Romance',
 			author: 'Sally Rooney',
@@ -226,7 +228,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 9,
 			images: [
-				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSCud_x_EyUAYuKaqHYjqlMtZJ7RQ46xJo5uufkBHR7B_yq5PumRuZmbrFKXTFO-8ujMHIyn8JvEtD9ssXJeT-DVbF7pxL3vMiOObcqQpU&usqp=CAc',
+				'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT4oDkpxveb1kqfRf021vnXzpp69oSV4NmaPENIoD7hq_PO4LpWwm7mn3YAgWo9ci__lcFsuzRZLNi871GRLB5YvW2g9rDv8CGO8m-qweE&usqp=CAc',
 			],
 			category: 'Fantasy',
 			author: 'George R. R. Martin',
@@ -241,7 +243,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 18,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ5IXUpC2meEGpNKHHvpcKaxuMdK7v2zOZT1yPU_q2_tTnbFSKrf1XKR0xA8b4SwGBvh5Gzphmu-Bz7fdtNirSLI2R9-cd_fjNSwqgydO2m&usqp=CAc',
+				'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT4oDkpxveb1kqfRf021vnXzpp69oSV4NmaPENIoD7hq_PO4LpWwm7mn3YAgWo9ci__lcFsuzRZLNi871GRLB5YvW2g9rDv8CGO8m-qweE&usqp=CAc',
 			],
 			category: 'Classics',
 			author: 'Louisa May Alcott',
@@ -256,7 +258,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 7,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTRKFCatnBhxJe7IMF0a9vSkqbfWRWOUHRWUXNHkN4rhv1VnXhxgq4QQs89HPZ9GzJ_nZkSDAATDTZhxtkXZ6eaRVG2GnCLeDqVAekWj6XC&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Fantasy',
 			author: 'Madeline Miller',
@@ -271,7 +273,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 10,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSSf-ZFoFqtKytHC-6o4RvtOU2vqfPEgpXiQUSxlVPaeTPK3Rcn-8NYikemTdq3ro42w8oJTxI-DFfbwOVPwtNKzxNyNKF4Xn9YhxCVjoP1&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Romance',
 			author: 'Colleen Hoover',
@@ -286,7 +288,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 13,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSwi7bmDAk0TLikjS2GkVe0nMv5U5KPQnPXYxoVPLxUVgE3alfo--2g8bcDKxo6jpFnE56mSyjPK0c2f0fFK4bW3_fAkNXdjYDLm-2SXLtR&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Classics',
 			author: 'F. Scott Fitzgerald',
@@ -301,7 +303,7 @@ export class ProductService {
 			isInStock: true,
 			quantity: 5,
 			images: [
-				'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT8NgsWmRdLZRbhHiPhELIh50EtF_MzVxDt38IYP6AsafF4J7X6B0GwrONWzh36uKxMFIQRX9JMN-e7gZP6pLB5By6ZOG6uOgJK9w0PiGhBoS1AhBJnmCFbFzo&usqp=CAc',
+				'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRPntTXBe6Yc8F4K8gRD3ZBo0U5bMiKQllJLsjGFS0IdNmtwGLGyS8ykz9rwW84qDSq02lrXG8mw79lASQgU4jD5zHYOKv-pyqk1QB2A_AQJuo_BdJtJug&usqp=CAc',
 			],
 			category: 'Thriller',
 			author: 'F. Scott Fitzgerald',

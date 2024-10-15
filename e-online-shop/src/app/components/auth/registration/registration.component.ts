@@ -7,6 +7,8 @@ import { Registration } from '../../../shared/models/auth.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { setHeaderVisibility } from '../../../core/store/ui/ui.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
 	selector: 'app-registration',
@@ -19,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 		MatButtonModule,
 	],
 	templateUrl: './registration.component.html',
-	styleUrls: ['./registration.component.css']
+	styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
 	registrationForm: FormGroup;
@@ -28,8 +30,10 @@ export class RegistrationComponent {
 	constructor(
 		private fb: FormBuilder,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private store: Store
 	) {
+		this.store.dispatch(setHeaderVisibility({ isHeaderVisible: false }));
 		this.registrationForm = this.fb.group({
 			firstName: ['', Validators.required],
 			surname: ['', Validators.required],
