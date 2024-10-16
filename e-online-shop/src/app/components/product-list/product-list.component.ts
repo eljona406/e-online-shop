@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Product } from '../../shared/models/product.model';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { SearchComponent } from '../../shared/components/search/search.component';
@@ -20,17 +21,18 @@ import { setHeaderVisibility } from '../../core/store/ui/ui.actions';
 	templateUrl: './product-list.component.html',
 	styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
 	public products$: Observable<Product[]>;
 	public searchTerm = '';
 	public filteredProducts: Product[] = [];
-	private allProducts: Product[] = [];
+	public allProducts: Product[] = [];
 	public selectedCategory: string | undefined;
+	private unsubscribe$ = new Subject<void>(); // Subject for unsubscription
 
 	constructor(
-		private router: Router,
-		private store: Store,
-		private route: ActivatedRoute
+		public router: Router,
+		public store: Store,
+		public route: ActivatedRoute
 	) {
 		// Select products from the store
 		this.products$ = this.store.select(selectProducts);
@@ -40,8 +42,8 @@ export class ProductListComponent implements OnInit {
 	ngOnInit() {
 		this.loadProducts(); // Dispatch action to load products
 
-		// Subscribe to products$ to initialize filteredProducts
-		this.products$.subscribe((products) => {
+		// Subscribe to products$ to initialize filteredProducts with takeUntil
+		this.products$.pipe(takeUntil(this.unsubscribe$)).subscribe((products) => {
 			this.filteredProducts = products;
 			this.allProducts = products;
 		});
@@ -72,7 +74,7 @@ export class ProductListComponent implements OnInit {
 	public filterProducts(searchTerm: string): void {
 		if (searchTerm) {
 			const lowerCaseTerm = searchTerm.toLowerCase();
-			this.products$.subscribe((products) => {
+			this.products$.pipe(takeUntil(this.unsubscribe$)).subscribe((products) => {
 				this.filteredProducts = products.filter(
 					(product) =>
 						product.name.toLowerCase().includes(lowerCaseTerm) ||
@@ -84,12 +86,12 @@ export class ProductListComponent implements OnInit {
 				);
 			});
 		} else {
-			this.products$.subscribe((products) => {
+			this.products$.pipe(takeUntil(this.unsubscribe$)).subscribe((products) => {
 				this.filteredProducts = products; // Reset to all products if search term is empty
 			});
 		}
 	}
-	
+
 	public setCategory(category: string): void {
 		this.selectedCategory = category;
 		this.filterByCategory(this.selectedCategory);
@@ -109,5 +111,10 @@ export class ProductListComponent implements OnInit {
 		if (event.key === 'Enter' || event.key === ' ') {
 			this.viewProductDetails(productId);
 		}
+	}
+
+	ngOnDestroy() {
+		this.unsubscribe$.next(); // Emit a value to complete all subscriptions
+		this.unsubscribe$.complete(); // Clean up
 	}
 }
