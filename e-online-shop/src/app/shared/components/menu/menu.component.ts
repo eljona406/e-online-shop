@@ -68,9 +68,13 @@ export class MenuComponent implements OnInit {
 	}
 
 	public toggleDropdown(event: Event, index: number) {
+		// Check if the clicked item has children
 		if (this.navItems[index].children) {
 			event.preventDefault();
+			// Toggle dropdown state
 			this.activeDropdown = this.activeDropdown === index ? null : index;
 		}
 	}
+
+
 }

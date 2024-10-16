@@ -24,10 +24,9 @@ import { Router } from '@angular/router';
 		CarouselComponent,
 	],
 	templateUrl: './dashboard.component.html',
-	styleUrl: './dashboard.component.css',
+	styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-	public filteredProducts: Product[] = [];
 	public products: Observable<Product[]>;
 
 	constructor(
