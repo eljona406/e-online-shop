@@ -1,21 +1,26 @@
 <header class="header-container">
 	<div class="header-section left-section">
-		<!-- <div class="burger-menu" *ngIf="showMenu">
-		<button class="menu-icon" (click)="menu.openMenu()">
-		  <i class="fas fa-bars"></i>
-		</button>
-	  </div> -->
+		<!-- Uncommented burger menu using @if directive -->
+		<!-- @if (showMenu) {
+			<div class="burger-menu">
+				<button class="menu-icon" (click)="menu.openMenu()">
+					<i class="fas fa-bars"></i>
+				</button>
+			</div>
+		} -->
 	</div>
+
 	<div class="header-section center-section">
 		<div class="page-title">
 			<a routerLink="" routerLinkActive="active" tabindex="0">Charmed Chapters</a>
 		</div>
 	</div>
 	<div class="header-section right-section">
-		<div *ngIf="username; else loginLink">Welcome, {{ username }}!</div>
-		<ng-template #loginLink>
+		@if (username) {
+			<div>Welcome, {{ username }}!</div>
+		} @else {
 			<p>Welcome, Guest!</p>
-		</ng-template>
+		}
 		<div class="cart-icon">
 			<a routerLink="/cart" routerLinkActive="active">
 				<i class="fa fa-shopping-cart"></i>
@@ -24,4 +29,7 @@
 		</div>
 	</div>
 </header>
+
 <app-menu #menu></app-menu>
+
+
