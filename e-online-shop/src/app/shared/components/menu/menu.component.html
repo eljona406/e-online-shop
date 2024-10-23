@@ -1,28 +1,28 @@
 <nav class="main-nav">
-    <div class="nav-container">
-        <ng-container *ngFor="let item of navItems; let i = index">
-            <div class="nav-item" [class.has-dropdown]="item.children">
-                <a [routerLink]="item.link"
-                   [class.active]="isItemActive(i)"
-                   [class.parent-active]="isParentActive(i)"
-                   (click)="handleNavClick($event, i)">
-                    {{ item.label }}
-                    <span *ngIf="item.children" class="arrow">
-                        {{ activeDropdown === i ? '▲' : '▼' }}
-                    </span>
-                </a>
-
-                <div *ngIf="activeDropdown === i && item.children && !isNavigating"
-                     class="dropdown-content">
-                    <ng-container *ngFor="let child of item.children; let j = index">
-                        <a [routerLink]="child.link"
-                           [class.active]="isChildActive(i, j)"
-                           (click)="handleChildClick(i, j)">
-                            {{ child.label }}
-                        </a>
-                    </ng-container>
-                </div>
-            </div>
-        </ng-container>
-    </div>
+	<div class="nav-container">
+		<ng-container *ngFor="let item of navItems; let i = index">
+			<div class="nav-item" [class.has-dropdown]="item.children">
+				<span class="parents">
+					<a
+						[routerLink]="item.link"
+						[class.active]="isItemActive(i)"
+						[class.parent-active]="isParentActive(i)"
+						(click)="handleNavClick($event, i)">
+						{{ item.label }}
+					</a>
+					<span *ngIf="item.children" class="arrow">
+						{{ activeDropdown === i ? '▲' : '▼' }}
+					</span>
+				</span>
+			</div>
+		</ng-container>
+	</div>
 </nav>
+
+<div class="overlay-dropdown" *ngIf="activeDropdown !== null">
+	<div class="dropdown-content">
+		<ng-container *ngFor="let child of navItems[activeDropdown].children">
+			<a [routerLink]="child.link" routerLinkActive="active">{{ child.label }}</a>
+		</ng-container>
+	</div>
+</div>

@@ -34,9 +34,11 @@ describe('MenuComponent', () => {
 		const navItems = fixture.nativeElement.querySelectorAll('.nav-item');
 		expect(navItems.length).toBe(component.navItems.length); // Check if the number of rendered items matches the navItems array
 
-		// Verify labels of each nav item
+		// Verify labels of each nav item, accounting for dropdown arrows
 		component.navItems.forEach((item, index) => {
-			expect(navItems[index].textContent.trim()).toBe(item.label);
+			const renderedText = navItems[index].textContent.trim();
+			const expectedText = item.children ? `${item.label}  ▼` : item.label; // Include arrow if the item has children
+			expect(renderedText).toBe(expectedText);
 		});
 	});
 
