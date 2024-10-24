@@ -1,19 +1,106 @@
 <app-header [showMenu]="true" [pageTitle]="'Cart'"></app-header>
-<div *ngIf="cartItems$ | async as cartItems; else emptyCart" class="cart-items">
-	<h2>Your Cart</h2>
-	<ul *ngIf="cartItems.length > 0">
-		<li *ngFor="let item of cartItems">
-			<img [src]="item.product.images[0]" alt="{{ item.product.name }}" width="100" />
-			<p>{{ item.product.name }} - Quantity: {{ item.quantity }}</p>
-			<p>Price: ${{ item.product.price }} each</p>
-			<button (click)="decreaseQuantity(item.product.id)">-</button>
-			{{ item.quantity }}
-			<button (click)="increaseQuantity(item.product.id)">+</button>
-			<button (click)="removeFromCart(item.product.id)">Remove</button>
-		</li>
-	</ul>
-</div>
+<h1 class="cart-title">Shopping Cart</h1>
+
+<ng-container *ngIf="cartItems$ | async as cartItems">
+	<ng-container *ngIf="cartItems.length > 0; else emptyCart">
+		<mat-horizontal-stepper [linear]="isLinear" #stepper>
+			<mat-step [stepControl]="firstFormGroup">
+				<ng-template matStepLabel>Cart Review</ng-template>
+				<div class="cart-items">
+					<ul>
+						<li *ngFor="let item of cartItems" class="cart-item">
+							<div class="item-details">
+								<button
+									class="remove-button"
+									(click)="removeFromCart(item.product.id)">
+									×
+								</button>
+								<img [src]="item.product.images[0]" alt="{{ item.product.name }}" />
+								<div class="product-info">
+									<p class="product-name">{{ item.product.name }}</p>
+									<p class="product-price">
+										£{{ item.product.price.toFixed(2) }}
+									</p>
+								</div>
+							</div>
+							<div class="quantity-total">
+								<div class="quantity">
+									<button
+										(click)="decreaseQuantity(item.product.id)"
+										class="quantity-btn">
+										-
+									</button>
+									<span class="quantity-value">{{ item.quantity }}</span>
+									<button
+										(click)="increaseQuantity(item.product.id)"
+										class="quantity-btn">
+										+
+									</button>
+								</div>
+								<p class="total-price">
+									£{{ (item.product.price * item.quantity).toFixed(2) }}
+								</p>
+							</div>
+						</li>
+					</ul>
+					<!-- <div class="cart-total">
+						<div class="total-amount">
+							<p>Total Amount:</p>
+							<p>£{{ getTotalAmount(cartItems).toFixed(2) }}</p>
+						</div>
+					</div> -->
+				</div>
+				<div class="stepper-button">
+					<button mat-flat-button (click)="navigateToProducts()">RETURN TO SHOP</button>
+					<button mat-flat-button matStepperNext>Continue Checkout | Total £{{ getTotalAmount(cartItems).toFixed(2) }}</button>
+				</div>
+			</mat-step>
+
+			<mat-step [stepControl]="secondFormGroup">
+				<form [formGroup]="secondFormGroup">
+					<ng-template matStepLabel>Payment Details</ng-template>
+
+					<mat-form-field>
+						<mat-label>Card Number</mat-label>
+						<input matInput formControlName="cardNumber" required />
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Expiration Date</mat-label>
+						<input matInput formControlName="expirationDate" required />
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Security Code (CVV)</mat-label>
+						<input matInput formControlName="cvv" required />
+					</mat-form-field>
+
+					<div>
+						<button mat-flat-button matStepperPrevious>Back</button>
+						<button mat-flat-button matStepperNext>Next</button>
+					</div>
+				</form>
+			</mat-step>
+
+			<!-- Payment Complete Step -->
+			<mat-step>
+				<ng-template matStepLabel>Payment Complete</ng-template>
+				<p>Your payment is successful! Thank you for your purchase.</p>
+				<div>
+					<button mat-flat-button matStepperPrevious>Back</button>
+					<button mat-flat-button (click)="stepper.reset()">Reset</button>
+				</div>
+			</mat-step>
+		</mat-horizontal-stepper>
+	</ng-container>
+</ng-container>
 
 <ng-template #emptyCart>
-	<h3 class="empty-cart">Your cart is empty.</h3>
+	<div class="empty-cart-container">
+		<div class="empty-cart-message">
+			<i class="fa fa-shopping-cart"></i>
+			<p>Your basket is currently empty.</p>
+		</div>
+		<button mat-flat-button class="return-button" (click)="navigateToProducts()">RETURN TO SHOP</button>
+	</div>
 </ng-template>

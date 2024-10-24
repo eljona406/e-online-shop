@@ -35,7 +35,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 		{
 			label: 'Subscriptions',
 			children: [
-				{ label: 'Buy a subscription', link: '/register' },
+				{ label: 'Get a subscription', link: '/register' },
 				{ label: 'My Subscription', link: '/login' },
 			],
 		},

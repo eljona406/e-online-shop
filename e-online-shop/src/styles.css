@@ -46,3 +46,20 @@ body {
 .owl-nav {
 	display: none !important; /* Hides the navigation buttons */
 }
+
+.mat-stepper-horizontal {
+	.mat-horizontal-stepper-header-container {
+		white-space: nowrap;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		padding: 0px 20%;
+	}
+	--mat-stepper-container-color: transparent;
+
+	.mat-horizontal-stepper-content {
+		height: 500px;
+	}
+}
