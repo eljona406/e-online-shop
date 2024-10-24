@@ -39,9 +39,9 @@ export class MenuComponent implements OnInit, OnDestroy {
 				{ label: 'My Subscription', link: '/login' },
 			],
 		},
-		{ label: 'Events', link: '/products' },
+		{ label: 'Events', link: '/events' },
 		{ label: 'More', link: '/products' },
-		{ label: 'Contact', link: '/products' },
+		{ label: 'Contact', link: '/contact' },
 	];
 
 	constructor(private router: Router) {
