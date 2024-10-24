@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, RouterModule, NavigationEnd, NavigationStart } from '@angular/router';
+import { filter, Subject, takeUntil } from 'rxjs';
 
 interface NavItem {
 	label: string;
@@ -13,15 +14,15 @@ interface NavItem {
 	standalone: true,
 	imports: [CommonModule, RouterModule],
 	templateUrl: './menu.component.html',
-	styleUrl: './menu.component.css',
+	styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit {
-	public isMenuOpen = false;
-	public username: string | null = null;
+export class MenuComponent implements OnInit, OnDestroy {
+	private destroy$ = new Subject<void>();
+	public activeDropdown: number | null = null;
+	public currentRoute = '';
+	public isNavigating = false;
 
-	activeDropdown: number | null = null;
-
-	navItems: NavItem[] = [
+	public navItems: NavItem[] = [
 		{
 			label: 'Shop',
 			children: [
@@ -33,7 +34,6 @@ export class MenuComponent implements OnInit {
 		{ label: 'Cart', link: '/cart' },
 		{
 			label: 'Subscriptions',
-
 			children: [
 				{ label: 'Buy a subscription', link: '/register' },
 				{ label: 'My Subscription', link: '/login' },
@@ -44,37 +44,60 @@ export class MenuComponent implements OnInit {
 		{ label: 'Contact', link: '/products' },
 	];
 
-	constructor(private router: Router) {}
+	constructor(private router: Router) {
+		this.setupRouterListener();
+	}
 
 	public ngOnInit(): void {
-		if (typeof window !== 'undefined') {
-			const username = localStorage.getItem('user_firstName');
-
-			if (username) {
-				this.username = username;
-			}
-		}
+		this.currentRoute = this.router.url;
 	}
 
-	onLogout() {
-		if (typeof window !== 'undefined') {
-			localStorage.removeItem('auth_token');
-			localStorage.removeItem('user_email');
-			localStorage.removeItem('user_firstName');
-			localStorage.removeItem('user_surname');
-		}
-		this.username = null;
-		this.router.navigate(['/login']);
+	public ngOnDestroy(): void {
+		this.destroy$.next();
+		this.destroy$.complete();
 	}
 
-	public toggleDropdown(event: Event, index: number) {
-		// Check if the clicked item has children
-		if (this.navItems[index].children) {
+	private setupRouterListener(): void {
+		this.router.events
+			.pipe(
+				filter((event) => event instanceof NavigationStart),
+				takeUntil(this.destroy$)
+			)
+			.subscribe(() => {
+				this.isNavigating = true;
+				this.activeDropdown = null; // Close dropdown on navigation start
+			});
+
+		this.router.events
+			.pipe(
+				filter((event) => event instanceof NavigationEnd),
+				takeUntil(this.destroy$)
+			)
+			.subscribe(() => {
+				this.isNavigating = false;
+				this.currentRoute = this.router.url;
+				// this.updateActiveStates();
+			});
+	}
+
+	public isItemActive(index: number): boolean {
+		return this.navItems[index].link === this.currentRoute;
+	}
+
+	public isParentActive(index: number): boolean {
+		return (
+			this.navItems[index].children?.some((child) => child.link === this.currentRoute) ||
+			false
+		);
+	}
+
+	public handleNavClick(event: MouseEvent, index: number): void {
+		const item = this.navItems[index];
+		if (item.children) {
 			event.preventDefault();
-			// Toggle dropdown state
 			this.activeDropdown = this.activeDropdown === index ? null : index;
+		} else {
+			this.activeDropdown = null; // Close dropdown on direct link click
 		}
 	}
-
-
 }
